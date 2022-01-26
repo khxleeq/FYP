@@ -21,3 +21,28 @@ app.use(passport.initialize());
 
 const port = process.env.PORT || 5000;
 app.listen(5000, () => console.log(`Server started running on port ${port}`));
+
+/// middleware function executed everytime app receives request
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+
+  next();
+});
+
+// Bodyparser Middleware
+app.use(bodyParser.json());
+
+// //Loading routers
+// const bookRouter = require("./routes/bookRouter");
+// const userRouter = require("./routes/userRouter");
+// const loanRouter = require("./routes/loanRouter");
+
+// // Use routes
+// app.use("/api/books", bookRouter);
+// app.use("/api/users", userRouter);
+// app.use("/api/loans", issueRouter);

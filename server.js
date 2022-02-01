@@ -37,12 +37,12 @@ app.use(function (req, res, next) {
 // Bodyparser Middleware
 app.use(bodyParser.json());
 
-// //Loading routers
-// const bookRouter = require("./routes/bookRouter");
-// const userRouter = require("./routes/userRouter");
-// const loanRouter = require("./routes/loanRouter");
+//Loading routers
+const bookRouter = require("./routes/api/bookRouter");
+const userRouter = require("./routes/api/userRouter");
+const issueRouter = require("./routes/api/issueRouter");
 
-// // Use routes
-// app.use("/api/books", bookRouter);
-// app.use("/api/users", userRouter);
-// app.use("/api/loans", issueRouter);
+// Use routes
+app.use("/api/books", bookRouter);
+app.use("/api/users", userRouter);
+app.use("/api/issues", issueRouter);

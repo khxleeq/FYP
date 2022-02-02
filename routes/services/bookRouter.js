@@ -12,6 +12,8 @@ bookRouter
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200);
   })
+
+  // GET request for books
   .get(cors.corsWithOptions, (req, res, next) => {
     Books.find(req.query)
       .sort({ name: "asc" })
@@ -25,6 +27,8 @@ bookRouter
       )
       .catch((err) => next(err));
   })
+
+  // POST request for a book
   .post(
     cors.corsWithOptions,
     authenticate.verifyUser,
@@ -41,24 +45,6 @@ bookRouter
         )
         .catch((err) => next(err));
     }
-  )
-  .put(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
-    (req, res, next) => {
-      res.statusCode = 403;
-      res.end("PUT operation not supported on /books");
-    }
-  )
-  .delete(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
-    (req, res, next) => {
-      res.statusCode = 403;
-      res.end("DELETE operation not supported on /books");
-    }
   );
 
 bookRouter
@@ -67,6 +53,8 @@ bookRouter
     res.sendStatus(200);
     res.setHeader("Access-Control-Allow-Credentials", "true");
   })
+
+  // get request for a bookid
   .get(cors.corsWithOptions, (req, res, next) => {
     Books.findById(req.params.bookId)
       .then(
@@ -80,16 +68,7 @@ bookRouter
       .catch((err) => next(err));
   })
 
-  .post(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
-    (req, res, next) => {
-      res.statusCode = 403;
-      res.end("POST operation not supported on /books/" + req.params.bookId);
-    }
-  )
-
+  // Update request for a book
   .put(
     cors.corsWithOptions,
     authenticate.verifyUser,
@@ -113,6 +92,8 @@ bookRouter
         .catch((err) => res.status(400).json({ success: false }));
     }
   )
+
+  // Delete a book request
 
   .delete(
     cors.corsWithOptions,

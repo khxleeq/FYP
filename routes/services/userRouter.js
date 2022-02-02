@@ -16,6 +16,7 @@ router.options("*", cors.corsWithOptions, (req, res) => {
   res.sendStatus(200);
 });
 
+// GET users request
 router.get(
   "/",
   cors.corsWithOptions,
@@ -35,6 +36,7 @@ router.get(
   }
 );
 
+// update user
 router.put(
   "/:userId",
   cors.corsWithOptions,
@@ -59,7 +61,7 @@ router.put(
   }
 );
 
-// For change of password
+// update password
 router.put(
   "/password/:userId",
   cors.corsWithOptions,
@@ -92,6 +94,8 @@ router.put(
   }
 );
 
+// register request
+
 router.post("/signup", cors.corsWithOptions, (req, res, next) => {
   User.register(
     new User({
@@ -118,13 +122,15 @@ router.post("/signup", cors.corsWithOptions, (req, res, next) => {
           passport.authenticate("local")(req, res, () => {
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json");
-            res.json({ success: true, status: "Registration Successful!" });
+            res.json({ success: true, status: "Sign-up Successful!" });
           });
         });
       }
     }
   );
 });
+
+// login request
 
 router.post(
   "/signin",
@@ -137,7 +143,7 @@ router.post(
       if (!user) {
         res.statusCode = 401;
         res.setHeader("Content-Type", "application/json");
-        res.json({ success: false, status: "Login Unsuccessful!", err: info });
+        res.json({ success: false, status: "Sign-in failed!", err: info });
       }
       req.logIn(user, (err) => {
         if (err) {
@@ -145,8 +151,8 @@ router.post(
           res.setHeader("Content-Type", "application/json");
           res.json({
             success: false,
-            status: "Login Unsuccessful!",
-            err: "Could not log in user!",
+            status: "Sign-in failed!",
+            err: "Could not sign-in user!",
           });
         }
 
@@ -155,7 +161,7 @@ router.post(
         res.setHeader("Content-Type", "application/json");
         res.json({
           success: true,
-          status: "Login Successful!",
+          status: "Sign-in successful!",
           token: token,
           userinfo: req.user,
         });
@@ -164,18 +170,21 @@ router.post(
   }
 );
 
+// logout request
+
 router.get("/logout", cors.cors, (req, res) => {
   if (req.session) {
     req.session.destroy();
     res.clearCookie("session-id");
     res.redirect("/");
   } else {
-    var err = new Error("You are not logged in!");
+    var err = new Error("You are not signed in!");
     err.status = 403;
     next(err);
   }
 });
 
+// get token request
 router.get("/checkJWTtoken", cors.corsWithOptions, (req, res) => {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
     if (err) return next(err);

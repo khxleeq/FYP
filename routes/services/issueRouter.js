@@ -2,16 +2,12 @@ var express = require("express");
 const bodyParser = require("body-parser");
 const issueRouter = express.Router();
 const mongoose = require("mongoose");
-
 var Issue = require("../../models/issueModel");
 var Books = require("../../models/bookModel");
 var Users = require("../../models/userModel");
-
 var passport = require("passport");
 var authenticate = require("../../auth");
-
-const cors = require("../cors");
-
+const cors = require("../CORS");
 issueRouter.use(bodyParser.json());
 
 issueRouter
@@ -19,6 +15,8 @@ issueRouter
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200);
   })
+
+  // get an issue request
   .get(
     cors.corsWithOptions,
     authenticate.verifyUser,
@@ -39,6 +37,7 @@ issueRouter
     }
   )
 
+  // post an issue request
   .post(
     cors.corsWithOptions,
     authenticate.verifyUser,
@@ -55,7 +54,7 @@ issueRouter
                     err.status = 400;
                     return next(err);
                   } else if (!requiredUser) {
-                    err = new Error("Student doesn't exist");
+                    err = new Error("Student RollNo. Invalid");
                     err.status = 400;
                     return next(err);
                   } else if (requiredBook._id && requiredUser._id) {
@@ -66,7 +65,7 @@ issueRouter
                         notReturned = issues.filter((issue) => !issue.returned);
                         if (notReturned && notReturned.length >= 3) {
                           err = new Error(
-                            `The student has already issued 3 books. Please return them first`
+                            `The student has already been issued maximum number of books (3). They must return them first`
                           );
                           err.status = 400;
                           return next(err);
@@ -105,7 +104,7 @@ issueRouter
                           } else {
                             console.log(requiredBook);
                             err = new Error(
-                              `The book is not available. You can wait for some days, until the book is returned to library.`
+                              `This book is unavailable. You can wait for few days, until the book has been returned to library.`
                             );
                             err.status = 400;
                             return next(err);
@@ -125,23 +124,12 @@ issueRouter
     }
   )
 
-  .put(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
-    (req, res, next) => {
-      res.statusCode = 403;
-      res.end("PUT operation not supported on /issues");
-    }
-  )
+  // delete an issue request
   .delete(
     cors.corsWithOptions,
     authenticate.verifyUser,
     authenticate.verifyAdmin,
     (req, res, next) => {
-      //res.statusCode = 403;
-      //res.end('DELETE operation not supported on /issues');
-
       Issue.remove({})
         .then(
           (resp) => {
@@ -155,13 +143,16 @@ issueRouter
         .catch((err) => next(err));
     }
   );
+
 issueRouter
   .route("/student/")
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200);
   })
+
+  // get request for a particular student
+
   .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
-    console.log("\n\n\n Object ID =====" + req.user._id);
     Issue.find({ student: req.user._id })
       .populate("student")
       .populate("book")
@@ -181,6 +172,9 @@ issueRouter
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200);
   })
+
+  // get request for a particular issue
+
   .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     Issue.findById(req.params.issueId)
       .populate("student")
@@ -206,26 +200,7 @@ issueRouter
       .catch((err) => next(err));
   })
 
-  .post(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
-    (req, res, next) => {
-      res.statusCode = 403;
-      res.end("POST operation not supported on /issues/" + req.params.issueId);
-    }
-  )
-
-  .delete(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
-    (req, res, next) => {
-      res.statusCode = 403;
-      res.end("POST operation not supported on /issues/" + req.params.issueId);
-    }
-  )
-
+  // update request for a particular issue
   .put(
     cors.corsWithOptions,
     authenticate.verifyUser,

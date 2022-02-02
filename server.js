@@ -38,9 +38,9 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 
 //Loading routers
-const bookRouter = require("./routes/api/bookRouter");
-const userRouter = require("./routes/api/userRouter");
-const issueRouter = require("./routes/api/issueRouter");
+const bookRouter = require("./routes/services/bookRouter");
+const userRouter = require("./routes/services/userRouter");
+const issueRouter = require("./routes/services/issueRouter");
 
 // Use routes
 app.use("/api/books", bookRouter);

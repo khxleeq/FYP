@@ -27,8 +27,8 @@ const bookSchema = new Schema(
     cat: {
       type: String,
       enum: [
-        "Romance",
         "Technology",
+        "Romance",
         "Computer Science",
         "Management",
         "Electronics",

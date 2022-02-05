@@ -64,3 +64,5 @@ const Auth = (
       return state;
   }
 };
+
+export default Auth;

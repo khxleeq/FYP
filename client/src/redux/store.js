@@ -10,6 +10,9 @@ export const ConfigureStore = () => {
   const store = createStore(
     combineReducers({
       auth: Auth,
+      users: Users,
+      books: Books,
+      issues: Issues,
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

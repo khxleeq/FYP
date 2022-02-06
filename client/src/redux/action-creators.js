@@ -2,7 +2,7 @@ import * as types from "./types";
 import { baseURI } from "../baseURI";
 import { json } from "body-parser";
 
-// /books API FETCH CALLS
+// /books API FETCH CALLS (books)
 
 export const addBook = (book) => ({
   type: types.ADD_BOOK,
@@ -335,8 +335,268 @@ export const signupUser = (creds) => (dispatch) => {
       }
     })
     .catch((error) =>
-      alert(
-        error.message + "\n" + "Username, email or rollNumber already exist!"
-      )
+      alert(error.message + "\n" + "Username, email or rollNo. already exist!")
     );
+};
+
+export const reqSignout = () => {
+  return {
+    type: types.SIGNOUT_REQUEST,
+  };
+};
+
+export const getsSignout = () => {
+  return {
+    type: types.SIGNOUT_SUCCESS,
+  };
+};
+
+export const signoutUser = () => (dispatch) => {
+  dispatch(reqSignout());
+  localStorage.removeItem("token");
+  localStorage.removeItem("creds");
+  localStorage.removeItem("userinfo");
+  dispatch(getsSignout());
+};
+
+export const editUserDispatch = (USER) => ({
+  type: types.EDIT_USER,
+  payload: USER,
+});
+
+export const editUser =
+  (_id, firstname, lastname, rollNumber, email) => (dispatch) => {
+    const newUser = {
+      firstname: firstname,
+      lastname: lastname,
+      rollNumber: rollNumber,
+      email: email,
+    };
+    const bearerToken = "Bearer " + localStorage.getItem("token");
+    return fetch(baseURL + "users/" + _id, {
+      method: "PUT",
+      body: JSON.stringify(newUser),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: bearerToken,
+      },
+    })
+      .then(
+        (response) => {
+          if (response.ok) {
+            return response;
+          } else {
+            var error = new Error(
+              "Error " + response.status + ": " + response.statusText
+            );
+            error.response = response;
+            throw error;
+          }
+        },
+        (error) => {
+          throw error;
+        }
+      )
+      .then((response) => response.json())
+      .then((response) => {
+        localStorage.removeItem("userinfo");
+        localStorage.setItem("userinfo", JSON.stringify(response));
+        return dispatch(editUserDispatch(response));
+      })
+      .catch((error) => {
+        alert(
+          "Your profile failed to edit\nError: " +
+            error.message +
+            "\n These credentials already exist!"
+        );
+      });
+  };
+
+export const editPasswordDispatch = (CREDS) => ({
+  type: types.EDIT_PASSWORD,
+  payload: CREDS,
+});
+
+export const editPassword = (_id, username, password) => (dispatch) => {
+  const bearerToken = "Bearer " + localStorage.getItem("token");
+  return fetch(baseURL + "users/password/" + _id, {
+    method: "PUT",
+
+    body: JSON.stringify({ password: password }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: bearerToken,
+    },
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText + "\n "
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      let newCreds = { username: username, password: password };
+      localStorage.removeItem("creds");
+      localStorage.setItem("creds", JSON.stringify(newCreds));
+      alert("Password changed successfully");
+      return dispatch(editPasswordDispatch(newCreds));
+    })
+    .catch((error) => {
+      alert("Your password could not be changed\nError: " + error.message);
+    });
+};
+
+// /issues API FETCH CALLS (issues)
+
+export const addIssue = (issue) => ({
+  type: types.ADD_ISSUE,
+  payload: issue,
+});
+
+export const postIssue = (bookId, studentId) => (dispatch) => {
+  const newIssue = {
+    book: bookId,
+    student: studentId,
+  };
+
+  const bearerToken = "Bearer " + localStorage.getItem("token");
+  return fetch(baseURI + "issues", {
+    method: "POST",
+    body: JSON.stringify(newIssue),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: bearerToken,
+    },
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      alert("Book issued successfully");
+      return dispatch(addIssue(response));
+    })
+    .catch((error) => {
+      alert(
+        "This book could not be issued\nError: " +
+          error.message +
+          "\n" +
+          "Either the book is unavailable or the student has reached their limit of books they can borrow. They should return books before they request for more."
+      );
+    });
+};
+
+export const returnBookDispatch = (issue) => ({
+  type: types.RETURN_ISSUE,
+  payload: issue,
+});
+
+export const returnIssue = (issueId) => (dispatch) => {
+  const bearerToken = "Bearer " + localStorage.getItem("token");
+  return fetch(baseURL + "issues/" + issueId, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: bearerToken,
+    },
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      alert("Book returned successfully");
+      return dispatch(returnBookDispatch(response));
+    })
+    .catch((error) => {
+      alert("The book could not be returned\nError: " + error.message);
+    });
+};
+
+export const addIssues = (issues) => ({
+  type: types.ADD_ISSUES,
+  payload: issues,
+});
+
+export const addIssues = (issues) => ({
+  type: types.ADD_ISSUES,
+  payload: issues,
+});
+
+export const issuesFailed = (errmsg) => ({
+  type: types.ISSUES_FAILED,
+  payload: errmsg,
+});
+
+export const fetchIssues = (student) => (dispatch) => {
+  let issueURL;
+  const bearerToken = "Bearer " + localStorage.getItem("token");
+  if (student) {
+    issueURL = "issues/student";
+  } else {
+    issueURL = "issues";
+  }
+  dispatch(issuesLoading(true));
+  return fetch(baseURL + issueURL, {
+    headers: {
+      Authorization: bearerToken,
+    },
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then((response) => response.json())
+    .then((issues) => dispatch(addIssues(issues)))
+    .catch((error) => dispatch(issuesFailed(error.message)));
 };

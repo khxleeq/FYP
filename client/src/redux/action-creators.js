@@ -177,7 +177,7 @@ export const fetchBooks = () => (dispatch) => {
     .catch((error) => dispatch(booksFailed(error.message)));
 };
 
-// /users API FETCH CALLS
+// /users API FETCH CALLS (auth)
 
 export const usersLoading = () => ({
   type: types.USERS_LOADING,
@@ -223,14 +223,14 @@ export const fetchUsers = () => (dispatch) => {
     .catch((error) => dispatch(usersFailed(error.message)));
 };
 
-export const requestSignin = (creds) => {
+export const reqSignin = (creds) => {
   return {
     type: types.SIGNIN_REQUEST,
     creds,
   };
 };
 
-export const receiveSignin = (response) => {
+export const getsSignin = (response) => {
   return {
     type: types.SIGNIN_SUCCESS,
     token: response.token,
@@ -246,7 +246,7 @@ export const signinError = (message) => {
 };
 
 export const signinUser = (creds) => (dispatch) => {
-  dispatch(requestSignin(creds));
+  dispatch(reqSignin(creds));
   return fetch(baseURI + "users/signin", {
     method: "POST",
     headers: {
@@ -286,7 +286,7 @@ export const signinUser = (creds) => (dispatch) => {
           alert("Timeout. Please sign-in again.");
         }, 3600 * 1000);
         // Dispatch the success action
-        dispatch(receiveSignin(response));
+        dispatch(getsSignin(response));
       } else {
         var error = new Error("Error " + response.status);
         error.response = response;

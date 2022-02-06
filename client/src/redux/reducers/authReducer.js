@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import * as types from "../types";
 
 const Auth = (
@@ -16,14 +17,14 @@ const Auth = (
   action
 ) => {
   switch (action.type) {
-    case types.LOGIN_REQUEST:
+    case types.SIGNIN_REQUEST:
       return {
         ...state,
         isLoading: true,
         isAuthenticated: false,
         user: action.creds,
       };
-    case types.LOGIN_SUCCESS:
+    case types.SIGNIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -32,17 +33,17 @@ const Auth = (
         token: action.token,
         userinfo: action.userinfo,
       };
-    case types.LOGIN_FAILURE:
+    case types.SIGNIN_FAILURE:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: false,
         errMsg: action.message,
       };
-    case types.LOGOUT_REQUEST:
+    case types.SIGNOUT_REQUEST:
       return { ...state, isLoading: true, isAuthenticated: true };
 
-    case types.LOGOUT_SUCCESS:
+    case types.SIGNOUT_SUCCESS:
       return {
         ...state,
         isLoading: false,

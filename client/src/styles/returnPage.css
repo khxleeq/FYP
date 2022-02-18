@@ -1,0 +1,31 @@
+
+.returnComponent {
+    margin-top: 10px;
+    text-align: center;
+    align-self: center;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.returnTableHeader{
+    background-color:#1A82A9 ;
+    color: white;
+    white-space: nowrap;
+}
+.returnHeader {
+    margin-top: 120px;
+}
+
+.returnTable {
+    margin-top: 15px;
+}
+
+.returnBtn {
+    background-color: rgb(158, 168, 179);
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .returnBtn :hover {
+    color: darkgrey !important;
+  
+  }

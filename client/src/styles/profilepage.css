@@ -1,0 +1,23 @@
+.profileComponent {
+    margin-top: 150px;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+}
+
+.cardHeader {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1A82A9;
+    border-bottom: 5px solid #ECECEC;
+}
+
+.cardBody {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profbtn {
+    background-color: rgb(158, 168, 179);
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+  }
+ 

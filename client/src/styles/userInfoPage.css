@@ -1,0 +1,18 @@
+.userDetailComponent {
+    margin-top: 125px;
+    text-align: center;
+    align-self: center;
+    margin-left: 36%;
+    font-family: 'Montserrat', sans-serif;
+
+
+
+}
+.UserDetailcardHeader {
+    background-color: #1A82A9;
+    font-weight: 400;
+}
+
+.userlistcardBody{
+    width: 500px;
+}

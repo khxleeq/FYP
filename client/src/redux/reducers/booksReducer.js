@@ -39,8 +39,7 @@ const Books = (
           }
         }),
       };
-
-    case types.DELETE_BOOK:
+    case types.REMOVE_BOOK:
       var resp = action.payload;
       return {
         ...state,

@@ -1,0 +1,11 @@
+.listOfUsersComponent {
+    margin-top: 130px;
+    text-align: center;
+    align-self: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.usersListTableHeader {
+    background-color:#1A82A9;
+    color: white;
+}

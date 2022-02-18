@@ -1,0 +1,12 @@
+.statsCardComponent{
+    margin-top: 150px;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+}
+.viewBtn {
+    background-color: rgb(158, 168, 179);
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+

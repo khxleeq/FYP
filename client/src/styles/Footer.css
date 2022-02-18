@@ -1,0 +1,13 @@
+.footer {
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/ 
+    height: 40px;
+    background: #1A82A9;
+    border-top:5px solid #ECECEC;
+    color: #ECECEC;
+    margin-bottom: 0.2%;
+    padding: 0.5%;
+}

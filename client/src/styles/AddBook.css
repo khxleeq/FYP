@@ -1,0 +1,22 @@
+.addBookBtn {
+    background-color: rgb(158, 168, 179);
+    color: black;
+    padding-right: 2em;
+    padding-left: 2em;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 42px;
+    margin-top: 20px;
+  }
+  .addBookBtn :hover {
+    color: darkgrey !important;
+  
+  }
+  .addBookHeading {
+    margin-top: 130px;
+    margin-left: 40px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1%;
+  }
+  .addForm {
+      margin-top: 25px;
+  }

@@ -1,0 +1,51 @@
+.editBookModal {
+font-family: 'Montserrat', sans-serif;
+text-align: center;
+align-self: center;
+justify-content: center;
+
+}
+.editBookModalHeader{
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: none;
+    background-color: rgb(158, 168, 179);
+    border-radius: 1%;
+}
+.editBookModalBody{
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 2%;
+}
+.editBookBtn {
+    background-color: rgb(158, 168, 179);
+    color: black;
+    margin-right: 20px;
+
+}
+.editBookModalLabel {
+    white-space: nowrap;
+}
+
+
+.deleteBookModal {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    
+    }
+    .deleteBookModalHeader{
+        font-family: 'Montserrat', sans-serif;
+        border-bottom: none;
+        background-color: rgb(158, 168, 179);
+        border-radius: 1%;
+    }
+    .deleteBookModalBody{
+        font-family: 'Montserrat', sans-serif;
+        border-radius: 2%;
+    }
+
+.deleteBookBtns {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 5px;
+}

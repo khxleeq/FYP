@@ -1,0 +1,24 @@
+.issueComponent {
+    margin-top: 125px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.issueForm {
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.issueBookBtn {
+    background-color: rgb(158, 168, 179);
+    color: black;
+    padding-right: 2em;
+    padding-left: 2em;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.issueBookBtn :hover {
+    color: darkgrey !important;
+}

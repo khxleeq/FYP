@@ -1,0 +1,25 @@
+.bookList{
+    margin-top: 130px;
+  }
+
+  .bookListTitle {
+    font-family: 'Montserrat', sans-serif;
+  } 
+  
+
+  .bookListTableHead{
+    background-color: #1A82A9;
+    border-bottom: 5px solid #ECECEC;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+
+  }
+
+ 
+  
+  .bookListTableBody {
+    font-family: 'Montserrat', sans-serif;
+
+  
+  }

@@ -1,0 +1,82 @@
+.navbar {
+  height: 6.5rem;
+  background-color: #1A82A9 !important;
+  border-bottom: 5px solid #ECECEC;
+  position: fixed;
+}
+  .title {
+  color: #ECECEC  !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  }
+  .homeButton{
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color:#ecececa4  ;
+  }
+  .homeButton :hover{
+    color: darkgrey !important;
+  }
+ 
+  .unAuthBtns{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(158, 168, 179);
+    color: black;
+  }
+ 
+   .unAuthBtns:hover{
+    color: darkgrey !important;
+  }
+
+.authUsername {
+  font-family: 'Montserrat', sans-serif;
+  color: white !important;
+  font-weight: bolder;
+}
+ 
+.signInModalBtn {
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgb(158, 168, 179);
+  color: black;
+  margin-left: 40%;
+} 
+.signInModalBtn:hover{
+  color: darkgrey !important;
+}
+
+.signUpModalBtn {
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgb(158, 168, 179);
+  color: black;
+  margin-left: 38%;
+} 
+.signUpModalBtn:hover{
+  color: darkgrey !important;
+}
+
+.signInModalHeader {
+  font-family: 'Montserrat', sans-serif;
+  border-bottom: none;
+  background-color: rgb(158, 168, 179);
+  border-radius: 1%;
+}
+
+.signInModalBody {
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 2%;
+}
+
+
+.signUpModalHeader {
+  font-family: 'Montserrat', sans-serif;
+  border-bottom: none;
+  background-color: rgb(158, 168, 179);
+  border-radius: 1%;
+}
+
+.signUpModalBody {
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 2%;
+}
+

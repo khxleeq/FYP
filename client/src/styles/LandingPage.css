@@ -1,0 +1,23 @@
+.homeInfo {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 40px;
+    text-align: center;
+    align-self: center;
+}
+
+.homeTitle {
+    margin-top: 30px;
+    text-align: center;
+    justify-content: center;
+    font-size: 30px ;
+}
+
+.libraryTimings {
+    justify-content: center;
+}
+
+.homestudentInfo {
+    font-size: 20px;
+    
+}
+

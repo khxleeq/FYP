@@ -26,6 +26,7 @@ app.listen(5000, () => console.log(`Server started running on port ${port}`));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "PUT");
+  res.header("Access-Control-Allow-Methods", "*");
 
   res.header(
     "Access-Control-Allow-Headers",
@@ -34,7 +35,6 @@ app.use(function (req, res, next) {
 
   next();
 });
-
 // Bodyparser Middleware
 app.use(bodyParser.json());
 

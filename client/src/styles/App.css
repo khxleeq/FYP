@@ -1,0 +1,33 @@
+body {
+  background-color: rgb(247, 245, 241);
+}
+.Option {
+  cursor: pointer;
+}
+  table,
+  th,
+  td {
+    border: 3px solid white;
+  }
+  
+  table {
+    min-width: 50%;
+  }
+  
+  @import "./main.css";
+  @import "./booksListPage.css";
+  @import "./bookInfoPage.css";
+  @import "./Header.css";
+  @import "./Footer.css";
+  @import "./LandingPage.css";
+  @import "./AddBook.css";
+  @import "./searchPage.css";
+  @import "./issuePage.css";
+  @import "./returnPage.css";
+  @import "./statsPage.css";
+  @import "./profilepage.css";
+  @import "./userInfoPage.css";
+  @import "./userslistpage.css";
+  @import "./logPage.css";
+  @import "./historyPage.css";
+  

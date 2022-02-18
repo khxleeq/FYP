@@ -1,6 +1,6 @@
 import * as types from "./types";
 import { baseURI } from "../baseURI";
-import { json } from "body-parser";
+
 
 // /books API FETCH CALLS (books)
 
@@ -74,7 +74,7 @@ export const editBook =
       copies: copies,
     };
     const bearerToken = "Bearer " + localStorage.getItem("token");
-    return fetch(baseURL + "books/" + _id, {
+    return fetch(baseURI + "books/" + _id, {
       method: "PUT",
 
       body: JSON.stringify(newBook),
@@ -106,14 +106,14 @@ export const editBook =
       });
   };
 
-export const deleteBookdispatch = (resp) => ({
-  type: types.DELETE_BOOK,
+export const removeBookdispatch = (resp) => ({
+  type: types.REMOVE_BOOK,
   payload: resp,
 });
 
-export const deleteBook = (_id) => (dispatch) => {
+export const removeBook = (_id) => (dispatch) => {
   const bearerToken = "Bearer " + localStorage.getItem("token");
-  return fetch(baseURL + "books/" + _id, {
+  return fetch(baseURI + "books/" + _id, {
     method: "DELETE",
     headers: {
       Authorization: bearerToken,
@@ -136,7 +136,7 @@ export const deleteBook = (_id) => (dispatch) => {
       }
     )
     .then((response) => response.json())
-    .then((response) => dispatch(deleteBookdispatch(response)))
+    .then((response) => dispatch(removeBookdispatch(response)))
     .catch((error) => {
       alert("Your book failed to delete\nError: " + error.message);
     });
@@ -152,9 +152,14 @@ export const booksFailed = (errmsg) => ({
   payload: errmsg,
 });
 
+export const booksLoading = () => ({
+  type: types.BOOKS_LOADING,
+});
+
+
 export const fetchBooks = () => (dispatch) => {
   dispatch(booksLoading(true));
-  return fetch(baseURL + "books")
+  return fetch(baseURI + "books")
     .then(
       (response) => {
         if (response.ok) {
@@ -282,7 +287,7 @@ export const signinUser = (creds) => (dispatch) => {
           dispatch(fetchUsers());
         }
         setTimeout(() => {
-          logoutUser();
+          signoutUser();
           alert("Timeout. Please sign-in again.");
         }, 3600 * 1000);
         // Dispatch the success action
@@ -373,7 +378,7 @@ export const editUser =
       email: email,
     };
     const bearerToken = "Bearer " + localStorage.getItem("token");
-    return fetch(baseURL + "users/" + _id, {
+    return fetch(baseURI + "users/" + _id, {
       method: "PUT",
       body: JSON.stringify(newUser),
       headers: {
@@ -419,7 +424,7 @@ export const editPasswordDispatch = (CREDS) => ({
 
 export const editPassword = (_id, username, password) => (dispatch) => {
   const bearerToken = "Bearer " + localStorage.getItem("token");
-  return fetch(baseURL + "users/password/" + _id, {
+  return fetch(baseURI + "users/password/" + _id, {
     method: "PUT",
 
     body: JSON.stringify({ password: password }),
@@ -517,7 +522,7 @@ export const returnBookDispatch = (issue) => ({
 
 export const returnIssue = (issueId) => (dispatch) => {
   const bearerToken = "Bearer " + localStorage.getItem("token");
-  return fetch(baseURL + "issues/" + issueId, {
+  return fetch(baseURI + "issues/" + issueId, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -555,15 +560,16 @@ export const addIssues = (issues) => ({
   payload: issues,
 });
 
-export const addIssues = (issues) => ({
-  type: types.ADD_ISSUES,
-  payload: issues,
-});
 
 export const issuesFailed = (errmsg) => ({
   type: types.ISSUES_FAILED,
   payload: errmsg,
 });
+
+export const issuesLoading = () => ({
+  type: types.ISSUES_LOADING,
+});
+
 
 export const fetchIssues = (student) => (dispatch) => {
   let issueURL;
@@ -574,7 +580,7 @@ export const fetchIssues = (student) => (dispatch) => {
     issueURL = "issues";
   }
   dispatch(issuesLoading(true));
-  return fetch(baseURL + issueURL, {
+  return fetch(baseURI + issueURL, {
     headers: {
       Authorization: bearerToken,
     },
@@ -592,8 +598,8 @@ export const fetchIssues = (student) => (dispatch) => {
         }
       },
       (error) => {
-        var errmess = new Error(error.message);
-        throw errmess;
+        var errmsg = new Error(error.message);
+        throw errmsg;
       }
     )
     .then((response) => response.json())

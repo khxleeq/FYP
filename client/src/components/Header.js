@@ -36,7 +36,7 @@ function EnableSignUp(props) {
       <React.Fragment>
         &nbsp; &nbsp;
         <Button className="unAuthBtns" outline onClick={props.toggleSignup}>
-          <span className="fa fa-user-plus fa-lg"></span> Sign up
+          <span className="fa fa-user-plus fa-lg"></span> Sign-up
         </Button>
       </React.Fragment>
     );
@@ -102,7 +102,7 @@ class Header extends Component {
     return (
       <React.Fragment>
         <Navbar className="navbar" dark expand="xl" fixed="top">
-          <div className="container">
+          <div className="container navbarcontainer">
             <NavbarToggler onClick={this.toggleNavBar}></NavbarToggler>
             <NavbarBrand className="title" href="/home">
               E-Library
@@ -249,10 +249,10 @@ class Header extends Component {
                       </div>
                       <Button
                         outline
-                        className="unAuthBtns"
+                        className="logoutBtn"
                         onClick={this.toggleSignout}
                       >
-                        <span className="fa fa-sign-out fa-lg"></span> Logout
+                        <span className="fa fa-sign-out fa-lg"></span> LOGOUT
                         {this.props.auth.isLoading ? (
                           <span className="fa fa-spinner fa-pulse fa-fw"></span>
                         ) : null}
@@ -310,7 +310,7 @@ class Header extends Component {
 
         <Modal isOpen={this.state.isSignUpOpen} toggle={this.toggleSignup}>
           <ModalHeader className="signUpModalHeader" toggle={this.toggleSignup}>
-            Sign up
+            Sign-up
           </ModalHeader>
           <ModalBody className="signUpModalBody">
             <LocalForm
@@ -467,7 +467,7 @@ class Header extends Component {
                 />
               </FormGroup>
               <Button className="signUpModalBtn" type="submit" value="submit">
-                Sign Up
+                Sign-Up
               </Button>
             </LocalForm>
           </ModalBody>

@@ -85,7 +85,7 @@ class StatsPage extends Component {
                   </CardTitle>
                   <CardText>Different books available</CardText>
                   <CardLink tag={Link} to="/books">
-                    <Button className="viewBtn">
+                    <Button color="info">
                       <i className="fa fa-eye fa-lg" /> &nbsp;View
                     </Button>
                   </CardLink>
@@ -101,7 +101,7 @@ class StatsPage extends Component {
                   </CardTitle>
                   <CardText>Books Issued</CardText>
                   <CardLink tag={Link} to="/log">
-                    <Button className="viewBtn">
+                    <Button color="info">
                       <i className="fa fa-eye fa-lg" /> &nbsp;View
                     </Button>
                   </CardLink>
@@ -122,7 +122,7 @@ class StatsPage extends Component {
                   </CardTitle>
                   <CardText>Books not yet returned</CardText>
                   <CardLink>
-                    <Button tag={Link} to="/return" className="viewBtn">
+                    <Button tag={Link} to="/return" color="info">
                       <i className="fa fa-eye fa-lg" /> &nbsp;View
                     </Button>
                   </CardLink>
@@ -139,7 +139,7 @@ class StatsPage extends Component {
                   </CardTitle>
                   <CardText>Students registered</CardText>
                   <CardLink tag={Link} to="/liststudents">
-                    <Button className="viewBtn">
+                    <Button color="info">
                       <i className="fa fa-eye fa-lg" /> &nbsp;View
                     </Button>
                   </CardLink>
@@ -156,7 +156,7 @@ class StatsPage extends Component {
                   </CardTitle>
                   <CardText>Admins registered</CardText>
                   <CardLink tag={Link} to="/listadmins">
-                    <Button className="viewBtn">
+                    <Button color="info">
                       <i className="fa fa-eye fa-lg" /> &nbsp;View
                     </Button>
                   </CardLink>

@@ -10,8 +10,8 @@
 
 }
 .issueBookBtn {
-    background-color: rgb(158, 168, 179);
-    color: black;
+    background-color:#ECECEC;
+    color: #2B5782;
     padding-right: 2em;
     padding-left: 2em;
     font-family: 'Montserrat', sans-serif;
@@ -20,5 +20,6 @@
 }
 
 .issueBookBtn :hover {
-    color: darkgrey !important;
+    background-color:#ccc9c9 !important;
+    color:#ECECEC !important;
 }

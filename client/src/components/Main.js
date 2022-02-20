@@ -445,7 +445,7 @@ class Main extends Component {
             Confirm Deletion
           </ModalHeader>
           <ModalBody className="deleteBookModalBody">
-            Book details : <br />
+            BOOK DETAILS: : <br />
             <br />
             Name : {this.state.selectedBook
               ? this.state.selectedBook.name
@@ -577,7 +577,7 @@ class Main extends Component {
                 </Row>
 
                 <Row className="form-group">
-                <Label className="editBookModalLabel" htmlFor="cat" md={2} >Category</Label>
+                <Label className="editBookModalLabel" htmlFor="cat" md={2} >Category:</Label>
                   <Col md={8} >
                     <Control.select
                     defaultValue={this.state.selectedBook.cat}
@@ -626,7 +626,7 @@ class Main extends Component {
                   </Col>
                 </Row>
                 <Row className="form-group">
-                <Label className="editBookModalLabel" htmlFor="floor" md={2}>Floor </Label>
+                <Label className="editBookModalLabel" htmlFor="floor" md={2}>Floor:</Label>
                   <Col md={4}>
                     <Control.select
                       model=".floor"

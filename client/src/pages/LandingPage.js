@@ -14,7 +14,7 @@ const LandingPage = () => {
         <br />
         <br />
         <div className="homestudentInfo">
-            Hi students! you can use this to check the availablity of the books you’re looking for and can browse through all the books we have in store.
+            Hi students! you can use this to check the availablity of the books you’re looking for and can browse through all the books we have in our library.
         </div>
 
         <br />

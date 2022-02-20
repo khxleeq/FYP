@@ -1,13 +1,14 @@
 .navbar {
   height: 6.5rem;
-  background-color: #1A82A9 !important;
+  background-color: #1A82A9 ;
   border-bottom: 5px solid #ECECEC;
   position: fixed;
 }
+
   .title {
   color: #ECECEC  !important;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 25px;
   }
   .homeButton{
@@ -21,38 +22,60 @@
  
   .unAuthBtns{
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(158, 168, 179);
-    color: black;
+    background-color:#ECECEC;
+    color: #2B5782;
   }
  
    .unAuthBtns:hover{
-    color: darkgrey !important;
+    background-color:#ccc9c9;
+    color:#ECECEC;
   }
 
+
+   
+  .logoutBtn{
+    font-family: 'Montserrat', sans-serif;
+    background-color:#e08122;
+    color: white;
+    font-size: 14px;
+  }
+ 
+   .logoutBtn:hover{
+  background-color: rgb(175, 102, 13);
+  }
+
+
 .authUsername {
+  color: #ECECEC  !important;
   font-family: 'Montserrat', sans-serif;
-  color: white !important;
-  font-weight: bolder;
+  font-weight: 1000;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 10px;
 }
  
+
+
 .signInModalBtn {
   font-family: 'Montserrat', sans-serif;
-  background-color: rgb(158, 168, 179);
-  color: black;
+  background-color:#ECECEC;
+  color: #2B5782;
   margin-left: 40%;
 } 
 .signInModalBtn:hover{
-  color: darkgrey !important;
+  background-color:#ccc9c9;
+  color:#ECECEC;
 }
 
 .signUpModalBtn {
   font-family: 'Montserrat', sans-serif;
-  background-color: rgb(158, 168, 179);
-  color: black;
+  background-color:#ECECEC;
+  color: #2B5782;
   margin-left: 38%;
 } 
 .signUpModalBtn:hover{
-  color: darkgrey !important;
+  background-color:#ccc9c9;
+  color:#ECECEC;
 }
 
 .signInModalHeader {

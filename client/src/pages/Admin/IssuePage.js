@@ -171,7 +171,7 @@ class IssuePage extends Component {
 
                 <Col className="text-center">
                   <Button type="submit" className="issueBookBtn">
-                    Issue Book
+                    Issue
                   </Button>
                 </Col>
             </Form>

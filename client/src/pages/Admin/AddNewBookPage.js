@@ -269,7 +269,7 @@ class AddNewBookPage extends Component {
               </Row>
               <Row className="align-self-center">
                 <Col className="text-center">
-                  <Button type="submit" className="addBookBtn">
+                  <Button  className="addBookBtn" type="submit" value="submit">
                     Add
                   </Button>
                 </Col>

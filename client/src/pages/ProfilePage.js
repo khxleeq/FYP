@@ -164,7 +164,6 @@ class ProfilePage extends Component {
                   model=".lastname"
                   show="touched"
                   messages={{
-                    required: "Required",
                     minLen: " Must be greater than 2 characters",
                     maxLen: " Must be 20 characters or less",
                   }}
@@ -184,13 +183,13 @@ class ProfilePage extends Component {
                     minLen: minLen(6),
                     maxLen: maxLen(6),
                   }}
+                  disabled
                 />
                 <Errors
                   className="text-danger"
                   model=".rollNumber"
                   show="touched"
                   messages={{
-                    required: "Required",
                     minLen: " Must be 6 numbers",
                     maxLen: " Must be 6 numbers",
                   }}
@@ -212,13 +211,12 @@ class ProfilePage extends Component {
                   model=".email"
                   show="touched"
                   messages={{
-                    required: "Required",
                     validEmail: " Enter a valid email",
                   }}
                 />
               </FormGroup>
               <Button type="submit" value="submit" className="signUpModalBtn">
-                Change
+                Confirm
               </Button>
             </LocalForm>
           </ModalBody>

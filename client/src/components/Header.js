@@ -103,7 +103,7 @@ class Header extends Component {
       <React.Fragment>
         <Navbar className="navbar" dark expand="xl" fixed="top">
           <div className="container navbarcontainer">
-            <NavbarToggler onClick={this.toggleNavBar}></NavbarToggler>
+            <NavbarToggler  onClick={this.toggleNavBar}></NavbarToggler>
             <NavbarBrand className="title" href="/home">
               E-Library
             </NavbarBrand>

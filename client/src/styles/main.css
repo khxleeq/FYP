@@ -8,7 +8,8 @@ justify-content: center;
 .editBookModalHeader{
     font-family: 'Montserrat', sans-serif;
     border-bottom: none;
-    background-color: rgb(158, 168, 179);
+    background-color:rgb(26, 130, 169);
+    color: white;
     border-radius: 1%;
 }
 .editBookModalBody{
@@ -16,8 +17,8 @@ justify-content: center;
     border-radius: 2%;
 }
 .editBookBtn {
-    background-color: rgb(158, 168, 179);
-    color: black;
+    background-color:rgb(26, 130, 169);
+    color: white;
     margin-right: 20px;
 
 }
@@ -36,7 +37,8 @@ justify-content: center;
     .deleteBookModalHeader{
         font-family: 'Montserrat', sans-serif;
         border-bottom: none;
-        background-color: rgb(158, 168, 179);
+        background-color:rgb(26, 130, 169);
+        color: white;
         border-radius: 1%;
     }
     .deleteBookModalBody{

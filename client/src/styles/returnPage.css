@@ -21,8 +21,8 @@
 }
 
 .returnBtn {
-    background-color:#ECECEC;
-    color: #2B5782;
+    background-color:rgb(26, 130, 169);
+    color: white;
     font-family: 'Montserrat', sans-serif;
   }
   .returnBtn :hover {

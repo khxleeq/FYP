@@ -59,19 +59,19 @@
 
 .signInModalBtn {
   font-family: 'Montserrat', sans-serif;
-  background-color:#ECECEC;
-  color: #2B5782;
+  background-color:rgb(26, 130, 169);
+  color: white;
   margin-left: 40%;
 } 
 .signInModalBtn:hover{
   background-color:#ccc9c9;
-  color:#ECECEC;
+  color:#ECECEC; 
 }
 
 .signUpModalBtn {
   font-family: 'Montserrat', sans-serif;
-  background-color:#ECECEC;
-  color: #2B5782;
+  background-color:rgb(26, 130, 169);
+  color: white;
   margin-left: 38%;
 } 
 .signUpModalBtn:hover{
@@ -81,8 +81,9 @@
 
 .signInModalHeader {
   font-family: 'Montserrat', sans-serif;
+  color: white;
   border-bottom: none;
-  background-color: rgb(158, 168, 179);
+  background-color: rgb(26, 130, 169);
   border-radius: 1%;
 }
 
@@ -94,8 +95,9 @@
 
 .signUpModalHeader {
   font-family: 'Montserrat', sans-serif;
+  color: white;
   border-bottom: none;
-  background-color: rgb(158, 168, 179);
+  background-color: rgb(26, 130, 169);
   border-radius: 1%;
 }
 

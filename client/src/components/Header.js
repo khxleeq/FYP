@@ -277,7 +277,7 @@ class Header extends Component {
           toggle={this.toggleModal}
         >
           <ModalHeader className="signInModalHeader" toggle={this.toggleModal}>
-            Sign In
+            Sign-In
           </ModalHeader>
           <ModalBody className="signInModalBody">
             <Form onSubmit={this.toggleSignin}>
@@ -287,7 +287,7 @@ class Header extends Component {
                   type="text"
                   id="username"
                   name="username"
-                  placeholder="Your Username .."
+                  placeholder="Username .."
                   innerRef={(input) => (this.username = input)}
                 />
               </FormGroup>
@@ -297,7 +297,7 @@ class Header extends Component {
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="Your Password .."
+                  placeholder="Password .."
                   innerRef={(input) => (this.password = input)}
                 />
               </FormGroup>
@@ -334,7 +334,7 @@ class Header extends Component {
                   id="username"
                   name="username"
                   className="form-control"
-                  placeholder="Your Username"
+                  placeholder="Username"
                   validators={{
                     required,
                     minLen: minLen(3),
@@ -358,7 +358,7 @@ class Header extends Component {
                   id="password"
                   name="password"
                   className="form-control"
-                  placeholder="Your Password"
+                  placeholder="Password"
                   validators={{
                     required,
                     minLen: minLen(6),
@@ -382,7 +382,7 @@ class Header extends Component {
                   id="firstname"
                   name="firstname"
                   className="form-control"
-                  placeholder="Your First Name"
+                  placeholder="First Name"
                   validators={{
                     required,
                     minLen: minLen(3),
@@ -406,7 +406,7 @@ class Header extends Component {
                   id="lastname"
                   name="lastname"
                   className="form-control"
-                  placeholder="Your Last Name"
+                  placeholder="Last Name"
                   validators={{
                     required,
                     minLen: minLen(3),
@@ -430,7 +430,7 @@ class Header extends Component {
                   id="rollNumber"
                   name="rollNumber"
                   className="form-control"
-                  placeholder="Your Roll No:"
+                  placeholder="Roll No:"
                   validators={{
                     required,
                     minLen: minLen(6),
@@ -454,7 +454,7 @@ class Header extends Component {
                   id="email"
                   name="email"
                   className="form-control"
-                  placeholder="Your Email:"
+                  placeholder="Email:"
                   validators={{ required, validEmail }}
                 />
                 <Errors
@@ -467,7 +467,7 @@ class Header extends Component {
                 />
               </FormGroup>
               <Button className="signUpModalBtn" type="submit" value="submit">
-                Sign-Up
+                Register
               </Button>
             </LocalForm>
           </ModalBody>

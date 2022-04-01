@@ -148,9 +148,8 @@ class AddNewBookPage extends Component {
                     model=".isbn"
                     show="touched"
                     messages={{
-                      minLen: "ISBN No must be greater than 9 numbers",
-                      maxLen: " ISBN No must be smaller than 14 numbers",
-                      isNumber: "ISBN must be a number!",
+                      minLen: "ISBN must be greater than 9 numbers",
+                      maxLen: " ISBN must be smaller than 14 numbers",
                       uniqueISBN: "This ISBN No already exists",
                     }}
                   />
@@ -201,7 +200,6 @@ class AddNewBookPage extends Component {
                     messages={{
                       minVal: "Shelf no be greater than 0",
                       maxVal: "Shelf no must be 100 or less",
-                      isNumber: "Shelf must be a number!",
                     }}
                   />
                 </Col>
@@ -244,9 +242,8 @@ class AddNewBookPage extends Component {
                     model=".copies"
                     show="touched"
                     messages={{
-                      minVal: "Copies available must be greater than 0",
-                      maxVal: " Copies available must be 100 or less",
-                      isNumber: " Copies available must be a number!",
+                      minVal: "must be greater than 0!",
+                      maxVal: " must be 100 or less",
                     }}
                   />
                 </Col>
@@ -269,8 +266,8 @@ class AddNewBookPage extends Component {
               </Row>
               <Row className="align-self-center">
                 <Col className="text-center">
-                  <Button  className="addBookBtn" type="submit" value="submit">
-                    Add
+                  <Button  className= "addBookBtn" type="submit" value="submit">
+                    Add Book
                   </Button>
                 </Col>
               </Row>

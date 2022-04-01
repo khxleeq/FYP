@@ -9,12 +9,12 @@ bookRouter.use(bodyParser.json());
 
 bookRouter
   .route("/")
-  .options(cors.corsWithOptions, (req, res) => {
+  .options(cors.corsBypass, (req, res) => {
     res.sendStatus(200);
   })
 
   // GET request for books
-  .get(cors.corsWithOptions, (req, res, next) => {
+  .get(cors.corsBypass, (req, res, next) => {
     Books.find(req.query)
       .sort({ name: "asc" })
       .then(
@@ -30,9 +30,9 @@ bookRouter
 
   // POST request for a book
   .post(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    cors.corsBypass,
+    authenticate.authUser,
+    authenticate.authAdmin,
     (req, res, next) => {
       Books.create(req.body)
         .then(
@@ -50,13 +50,13 @@ bookRouter
 
 bookRouter
   .route("/:bookId")
-  .options(cors.corsWithOptions, (req, res) => {
+  .options(cors.corsBypass, (req, res) => {
     res.sendStatus(200);
     res.setHeader("Access-Control-Allow-Credentials", "true");
   })
 
   // get request for a bookid
-  .get(cors.corsWithOptions, (req, res, next) => {
+  .get(cors.corsBypass, (req, res, next) => {
     Books.findById(req.params.bookId)
       .then(
         (book) => {
@@ -72,9 +72,9 @@ bookRouter
 
   // Update request for a book
   .put(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    cors.corsBypass,
+    authenticate.authUser,
+    authenticate.authAdmin,
     (req, res, next) => {
       Books.findByIdAndUpdate(
         req.params.bookId,
@@ -98,9 +98,9 @@ bookRouter
   // Delete a book request
 
   .delete(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    cors.corsBypass,
+    authenticate.authUser,
+    authenticate.authAdmin,
     (req, res, next) => {
       Books.findByIdAndRemove(req.params.bookId)
         .then(

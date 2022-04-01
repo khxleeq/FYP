@@ -36,8 +36,6 @@ import {
   signinUser,
   signupUser,
   signoutUser,
-  editUser,
-  editPassword,
   postIssue,
   returnIssue,
   fetchIssues,
@@ -83,10 +81,6 @@ const mapDispatchToProps = (dispatch) => ({
   signinUser: (creds) => dispatch(signinUser(creds)),
   signoutUser: () => dispatch(signoutUser()),
   signupUser: (creds) => dispatch(signupUser(creds)),
-  editUser: (_id, firstname, lastname, rollNumber, email) =>
-    dispatch(editUser(_id, firstname, lastname, rollNumber, email)),
-  editPassword: (_id, username, password) =>
-    dispatch(editPassword(_id, username, password)),
   postIssue: (bookId, studentId) => dispatch(postIssue(bookId, studentId)),
   returnIssue: (issueId) => dispatch(returnIssue(issueId)),
   fetchIssues: (student) => {
@@ -191,6 +185,8 @@ class Main extends Component {
       );
     };
 
+    //  Authorization access routes
+
     const PrivateRouteCommon = ({ component: Component, ...rest }) => (
       <Route
         {...rest}
@@ -245,6 +241,7 @@ class Main extends Component {
       />
     );
 
+  
     let uniqueIsbn = (defaultIsbn) => (val) =>
       !this.props.books.books.some((book) => book.isbn === val) ||
       val === defaultIsbn;
@@ -260,6 +257,7 @@ class Main extends Component {
           signoutUser={this.props.signoutUser}
           signupUser={this.props.signupUser}
         />
+        
 
         <Switch location={this.props.location}>
           <Route exact path="/home" component={() => <LandingPage />} />
@@ -442,7 +440,7 @@ class Main extends Component {
           toggle={this.toggleDeleteModal}
         >
           <ModalHeader className="deleteBookModalHeader" toggle={this.toggleDeleteModal}>
-            Confirm Deletion
+            Delete this book
           </ModalHeader>
           <ModalBody className="deleteBookModalBody">
             BOOK DETAILS: : <br />
@@ -459,7 +457,7 @@ class Main extends Component {
             Available Copies :{" "}
             {this.state.selectedBook ? this.state.selectedBook.copies : ""}{" "}
             <br /> <br />
-            Are you sure you wish to delete this book ? <br />
+            Are you sure you want to delete this book? <br />
             <br />
             <Button className="deleteBookBtns"
               color="danger"

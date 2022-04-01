@@ -9,7 +9,7 @@ const cors = require("../CORS");
 router.use(bodyParser.json());
 
 /* GET users listing. */
-router.options("*", cors.corsWithOptions, (req, res) => {
+router.options("*", cors.corsBypass, (req, res) => {
   req.headers;
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.sendStatus(200);
@@ -18,9 +18,9 @@ router.options("*", cors.corsWithOptions, (req, res) => {
 // GET users request
 router.get(
   "/",
-  cors.corsWithOptions,
-  authenticate.verifyUser,
-  authenticate.verifyAdmin,
+  cors.corsBypass,
+  authenticate.authUser,
+  authenticate.authAdmin,
   function (req, res, next) {
     User.find({})
       .then(
@@ -35,67 +35,10 @@ router.get(
   }
 );
 
-// update user
-router.put(
-  "/:userId",
-  cors.corsWithOptions,
-  authenticate.verifyUser,
-  function (req, res, next) {
-    User.findByIdAndUpdate(
-      req.params.userId,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    )
-      .then(
-        (user) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(user);
-        },
-        (err) => next(err)
-      )
-      .catch((err) => res.status(400).json({ success: false }));
-  }
-);
-
-// update password
-router.put(
-  "/password/:userId",
-  cors.corsWithOptions,
-  authenticate.verifyUser,
-  function (req, res, next) {
-    User.findById(req.params.userId)
-      .then(
-        (user) => {
-          if (user && !user.admin) {
-            user.setPassword(req.body.password, function () {
-              user.save();
-              res
-                .status(200)
-                .json({ message: "password changed successfully" });
-            });
-          } else if (!user) {
-            res.status(500).json({ message: "User doesn't exist" });
-          } else {
-            res.status(400).json({
-              message:
-                "Password of an admin can't be changed this way.\nContact the webmaster",
-            });
-          }
-        },
-        (err) => next(err)
-      )
-      .catch((err) =>
-        res.status(400).json({ message: "Internal Server Error" })
-      );
-  }
-);
 
 // register request
 
-router.post("/signup", cors.corsWithOptions, (req, res, next) => {
+router.post("/signup", cors.corsBypass, (req, res, next) => {
   User.register(
     new User({
       username: req.body.username,
@@ -133,7 +76,7 @@ router.post("/signup", cors.corsWithOptions, (req, res, next) => {
 
 router.post(
   "/signin",
-  cors.corsWithOptions,
+  cors.corsBypass,
   passport.authenticate("local"),
   (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
@@ -165,7 +108,7 @@ router.post(
           userinfo: req.user,
         });
       });
-    })(req, res, next); // function call IIFE
+    })(req, res, next); 
   }
 );
 
@@ -181,23 +124,6 @@ router.get("/logout", cors.cors, (req, res) => {
     err.status = 403;
     next(err);
   }
-});
-
-// get token request
-router.get("/checkJWTtoken", cors.corsWithOptions, (req, res) => {
-  passport.authenticate("jwt", { session: false }, (err, user, info) => {
-    if (err) return next(err);
-
-    if (!user) {
-      res.statusCode = 401;
-      res.setHeader("Content-Type", "application/json");
-      return res.json({ status: "JWT invalid!", success: false, err: info });
-    } else {
-      res.statusCode = 200;
-      res.setHeader("Content-Type", "application/json");
-      return res.json({ status: "JWT valid!", success: true, user: user });
-    }
-  })(req, res);
 });
 
 module.exports = router;

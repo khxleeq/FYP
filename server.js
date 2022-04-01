@@ -20,7 +20,7 @@ mongoose
 app.use(passport.initialize());
 
 const port = process.env.PORT || 5000;
-app.listen(5000, () => console.log(`Server started running on port ${port}`));
+app.listen(5000, () => console.log(`${port}`));
 
 /// middleware function executed everytime app receives request
 app.use(function (req, res, next) {

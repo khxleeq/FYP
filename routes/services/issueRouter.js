@@ -12,15 +12,15 @@ issueRouter.use(bodyParser.json());
 
 issueRouter
   .route("/")
-  .options(cors.corsWithOptions, (req, res) => {
+  .options(cors.corsBypass, (req, res) => {
     res.sendStatus(200);
   })
 
   // get an issue request
   .get(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    cors.corsBypass,
+    authenticate.authUser,
+    authenticate.authAdmin,
     function (req, res, next) {
       Issue.find({})
         .populate("student")
@@ -39,9 +39,9 @@ issueRouter
 
   // post an issue request
   .post(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    cors.corsBypass,
+    authenticate.authUser,
+    authenticate.authAdmin,
     (req, res, next) => {
       Books.findById(req.body.book)
         .then(
@@ -126,9 +126,9 @@ issueRouter
 
   // delete an issue request
   .delete(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    cors.corsBypass,
+    authenticate.authUser,
+    authenticate.authAdmin,
     (req, res, next) => {
       Issue.remove({})
         .then(
@@ -146,13 +146,13 @@ issueRouter
 
 issueRouter
   .route("/student/")
-  .options(cors.corsWithOptions, (req, res) => {
+  .options(cors.corsBypass, (req, res) => {
     res.sendStatus(200);
   })
 
   // get request for a particular student
 
-  .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+  .get(cors.corsBypass, authenticate.authUser, (req, res, next) => {
     Issue.find({ student: req.user._id })
       .populate("student")
       .populate("book")
@@ -169,13 +169,13 @@ issueRouter
 
 issueRouter
   .route("/:issueId")
-  .options(cors.corsWithOptions, (req, res) => {
+  .options(cors.corsBypass, (req, res) => {
     res.sendStatus(200);
   })
 
   // get request for a particular issue
 
-  .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+  .get(cors.corsBypass, authenticate.authUser, (req, res, next) => {
     Issue.findById(req.params.issueId)
       .populate("student")
       .populate("book")
@@ -202,9 +202,9 @@ issueRouter
 
   // update request for a particular issue
   .put(
-    cors.corsWithOptions,
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    cors.corsBypass,
+    authenticate.authUser,
+    authenticate.authAdmin,
     (req, res, next) => {
       Issue.findById(req.params.issueId)
         .then(

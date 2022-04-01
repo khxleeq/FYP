@@ -19,7 +19,7 @@ class IssuePage extends Component {
       ));
       const currentBook = this.props.books[0];
 
-      // To just get list of the students (not the admins)
+      // To just get list of the students 
       let usersMapping = this.props.users.filter((user) => !user.admin);
       const currentUser = usersMapping[0];
 

@@ -48,11 +48,11 @@ export const postBook =
       )
       .then((response) => response.json())
       .then((response) => {
-        alert("Your book has been added successfully!");
+        alert("Book has been added successfully!");
         return dispatch(addBook(response));
       })
       .catch((error) => {
-        alert("Your book could not be added\nError: " + error.message);
+        alert("Book could not be added\nError: " + error.message);
       });
   };
 
@@ -102,7 +102,7 @@ export const editBook =
       .then((response) => response.json())
       .then((response) => dispatch(editBookdispatch(response)))
       .catch((error) => {
-        alert("Your book failed to edit\nError: " + error.message);
+        alert("Book failed to edit\nError: " + error.message);
       });
   };
 
@@ -138,7 +138,7 @@ export const removeBook = (_id) => (dispatch) => {
     .then((response) => response.json())
     .then((response) => dispatch(removeBookdispatch(response)))
     .catch((error) => {
-      alert("Your book failed to delete\nError: " + error.message);
+      alert("Book failed to delete\nError: " + error.message);
     });
 };
 
@@ -364,103 +364,6 @@ export const signoutUser = () => (dispatch) => {
   dispatch(getsSignout());
 };
 
-export const editUserDispatch = (USER) => ({
-  type: types.EDIT_USER,
-  payload: USER,
-});
-
-export const editUser =
-  (_id, firstname, lastname, rollNumber, email) => (dispatch) => {
-    const newUser = {
-      firstname: firstname,
-      lastname: lastname,
-      rollNumber: rollNumber,
-      email: email,
-    };
-    const bearerToken = "Bearer " + localStorage.getItem("token");
-    return fetch(baseURI + "users/" + _id, {
-      method: "PUT",
-      body: JSON.stringify(newUser),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: bearerToken,
-      },
-    })
-      .then(
-        (response) => {
-          if (response.ok) {
-            return response;
-          } else {
-            var error = new Error(
-              "Error " + response.status + ": " + response.statusText
-            );
-            error.response = response;
-            throw error;
-          }
-        },
-        (error) => {
-          throw error;
-        }
-      )
-      .then((response) => response.json())
-      .then((response) => {
-        localStorage.removeItem("userinfo");
-        localStorage.setItem("userinfo", JSON.stringify(response));
-        return dispatch(editUserDispatch(response));
-      })
-      .catch((error) => {
-        alert(
-          "Your profile failed to edit\nError: " +
-            error.message +
-            "\n These credentials already exist!"
-        );
-      });
-  };
-
-export const editPasswordDispatch = (CREDS) => ({
-  type: types.EDIT_PASSWORD,
-  payload: CREDS,
-});
-
-export const editPassword = (_id, username, password) => (dispatch) => {
-  const bearerToken = "Bearer " + localStorage.getItem("token");
-  return fetch(baseURI + "users/password/" + _id, {
-    method: "PUT",
-
-    body: JSON.stringify({ password: password }),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: bearerToken,
-    },
-  })
-    .then(
-      (response) => {
-        if (response.ok) {
-          return response;
-        } else {
-          var error = new Error(
-            "Error " + response.status + ": " + response.statusText + "\n "
-          );
-          error.response = response;
-          throw error;
-        }
-      },
-      (error) => {
-        throw error;
-      }
-    )
-    .then((response) => response.json())
-    .then((response) => {
-      let newCreds = { username: username, password: password };
-      localStorage.removeItem("creds");
-      localStorage.setItem("creds", JSON.stringify(newCreds));
-      alert("Password changed successfully");
-      return dispatch(editPasswordDispatch(newCreds));
-    })
-    .catch((error) => {
-      alert("Your password could not be changed\nError: " + error.message);
-    });
-};
 
 // /issues API FETCH CALLS (issues)
 
